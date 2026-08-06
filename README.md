@@ -48,12 +48,12 @@ The infrastructure will evolve as Lunaria Systems grows.
 
 Current roadmap:
 
-* ✅ Project 1 – First Production Linux Server
+* ✅ Project 1 – First Production Cloud Server
 * ⏳ Project 2 – Web Server Deployment
 * ⏳ Project 3 – Database Infrastructure
 * ⏳ Project 4 – Docker Containerization
 * ⏳ Project 5 – CI/CD Pipeline
-* ⏳ Project 6 – Infrastructure as Code (Terraform)
+* ⏳ Project 6 – Multi-Tier Infrastructure
 * ⏳ Project 7 – Kubernetes Deployment
 * ⏳ Project 8 – Monitoring and Logging
 * ⏳ Project 9 – High Availability & Scaling
@@ -81,9 +81,9 @@ This repository is intended to reflect not only the final solution, but also the
 
 ## Current Status
 
-🚧 **Project 1: First Production Linux Server** — In Progress
+✅ Project 1 – First Production Cloud Server — Completed
 
-The first objective is to build and configure a production-style Linux server while learning the fundamentals of Linux administration, networking, security, and AWS.
+🚧 Project 2 – Web Server Deployment — Coming Soon
 
 ---
 
