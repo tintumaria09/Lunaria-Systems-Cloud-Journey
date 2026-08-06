@@ -1,4 +1,4 @@
-# Project 01 – Build My First Production Linux Server
+# Project 01 – First Production Cloud Server
 
 ## Project Overview
 
@@ -6,11 +6,16 @@ In this project, I built my first Linux server on Amazon EC2. The objective was 
 
 The server was created for an imaginary company called **Lunaria Systems**.
 
+This project was completed in two phases:
+
+* **Manual deployment** using the AWS Management Console to understand each AWS component.
+* **Infrastructure as Code (IaC)** using Terraform to automate the deployment.
+
 ---
 
 ## Project Goal
 
-Build a secure Red Hat Enterprise Linux server that administrators can access remotely using SSH.
+Build a secure Red Hat Enterprise Linux server that administrators can access remotely using SSH, verify the health of the server after deployment, and automate the infrastructure using Terraform.
 
 ---
 
@@ -20,6 +25,8 @@ Build a secure Red Hat Enterprise Linux server that administrators can access re
 * Amazon EC2
 * Red Hat Enterprise Linux (RHEL)
 * SSH
+* Terraform
+* Git
 * GitHub
 
 ---
@@ -30,7 +37,7 @@ Build a secure Red Hat Enterprise Linux server that administrators can access re
 
 **Amazon EC2**
 
-Reason:
+**Reason**
 
 * Provides a virtual Linux server.
 * Can be started, stopped, or terminated when needed.
@@ -43,9 +50,9 @@ Reason:
 
 **Red Hat Enterprise Linux (RHEL)**
 
-Reason:
+**Reason**
 
-* Familiar operating system from RHCSA studies.
+* Familiar operating system from my RHCSA studies.
 * Widely used in enterprise environments.
 
 ---
@@ -54,7 +61,7 @@ Reason:
 
 **t3.micro (Free Tier Eligible)**
 
-Reason:
+**Reason**
 
 * Suitable for learning.
 * Eligible for AWS Free Tier.
@@ -67,10 +74,11 @@ Reason:
 
 A key pair was created instead of using passwords.
 
-Reason:
+**Reason**
 
 * More secure than password authentication.
 * Uses public-key cryptography.
+* Recommended authentication method for Linux server administration.
 
 ---
 
@@ -82,10 +90,10 @@ A Security Group was configured with the following rule:
 | -------- | ---- | ------ | ----------------------------------------------- |
 | SSH      | 22   | My IP  | Allow only my computer to administer the server |
 
-Reason:
+**Reason**
 
 * Prevents random computers on the Internet from attempting SSH connections.
-* Only my current public IP address is allowed.
+* Restricts remote administration to my current public IP address.
 
 ---
 
@@ -99,6 +107,8 @@ Example:
 | ------- | ---------------------- |
 | Name    | lunaria-prod-server-01 |
 | Project | Lunaria                |
+
+Resource tags make cloud resources easier to organize, identify, and manage.
 
 ---
 
@@ -114,43 +124,132 @@ ssh -i "<sample-key>.pem" ec2-user@<PUBLIC-IP>
 
 ---
 
+## Linux Server Verification
+
+After establishing the SSH connection, I verified that the server was functioning correctly by checking:
+
+* Server identity (`hostname`, `hostnamectl`)
+* Memory information (`free`, `free -h`)
+* CPU information (`lscpu`)
+* Disk usage (`df`, `df -h`)
+* Storage layout (`lsblk`)
+* Network connectivity (`ping 8.8.8.8`)
+* DNS resolution (`ping google.com`)
+
+These verification steps represent the basic health checks commonly performed after provisioning a new Linux server.
+
+---
+
+## Infrastructure as Code (Terraform)
+
+After creating the infrastructure manually, I recreated the same environment using Terraform.
+
+The Terraform project was organized into multiple files:
+
+* `main.tf`
+* `variables.tf`
+* `.gitignore`
+* `.terraform.lock.hcl`
+
+During this phase I learned:
+
+* Terraform providers
+* Terraform resources
+* Variables
+* `terraform init`
+* `terraform validate`
+* `terraform plan`
+* `terraform apply`
+* Terraform state
+* Why sensitive files such as state files should not be committed to GitHub
+---
+
 ## What I Learned
 
 During this project I learned:
 
-* Why EC2 is used instead of S3.
-* What an AMI is.
-* Why key pairs are more secure than passwords.
-* Why SSH should be restricted to "My IP".
-* The difference between public and private IP addresses.
+### AWS
+
+* Why Amazon EC2 is used instead of Amazon S3.
+* What an Amazon Machine Image (AMI) is.
+* How EC2 instances are launched and managed.
 * The purpose of Security Groups.
+* The importance of resource tagging.
+* The difference between public and private IP addresses.
+
+### Linux
+
 * How to connect securely to a Linux server using SSH.
+* How to verify the identity of a Linux server.
+* How to inspect memory, CPU, disk usage, and storage layout.
+* How to verify Internet connectivity and DNS resolution.
+
+### Terraform
+
+* How Infrastructure as Code simplifies cloud deployments.
+* How Terraform providers and resources work.
+* How to organize Terraform configuration files.
+* The purpose of variables in Terraform.
+* Why Terraform state files should not be committed to GitHub.
+* How to initialize, validate, plan, and apply Terraform configurations.
+
+### Git & GitHub
+
+* How to clone a Git repository.
+* How to organize project files inside a repository.
+* How to stage, commit, and push changes.
+* The importance of using `.gitignore`.
+* How Git commit identity differs from GitHub authentication.
 
 ---
 
 ## Screenshots
 
-* EC2 instance overview
-* Tags
-* Security Group inbound rules
-* Successful SSH connection
+The following screenshots are available in the **screenshots** folder.
+
+### AWS Infrastructure
+
+* 01-ec2-instance-overview
+* 02-tags
+* 03-security-group-inbound-rules
+
+### Secure Remote Access
+
+* 04-successful-ssh-login
+
+### Linux Server Verification
+
+* 05-server-identity-verification
+* 06-memory-information
+* 07-cpu-information
+* 08-disk-information
+* 09-storage-layout
+* 10-network-connectivity-and-dns
+
+### Infrastructure as Code
+
+* 11-terraform-ec2-instance
+* 12-terraform-security-groups
 
 ---
 
-## Current Status
+## Project Status
 
-Project is currently in progress.
+**Status:** Completed ✅
 
-Completed:
+### Completed
 
-* AWS infrastructure creation
-* Secure SSH connectivity
+* Provisioned an Amazon EC2 instance.
+* Configured secure SSH access.
+* Restricted administrative access using Security Groups.
+* Verified server identity and system health.
+* Verified storage, CPU, memory, and networking.
+* Verified Internet connectivity and DNS resolution.
+* Recreated the infrastructure using Terraform.
+* Documented the project using GitHub.
 
-Next steps:
+---
 
-* Inspect the Linux server.
-* Create administrator accounts.
-* Configure sudo access.
-* Verify hostname, CPU, RAM, storage, and networking.
-* Automate the infrastructure using Terraform.
+## Conclusion
 
+This project provided practical experience in provisioning, securing, verifying, and automating a Linux server on AWS. It established a strong foundation in Linux administration, AWS fundamentals, Infrastructure as Code with Terraform, and version control with Git and GitHub, forming the first project in my cloud and DevOps portfolio.
