@@ -5,7 +5,7 @@
 *.tfstate
 *.tfstate.*
 
-# Variable files (often contain personal or secret values)
+# Variable files
 terraform.tfvars
 *.auto.tfvars
 
@@ -17,3 +17,15 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Ansible
+
+# Environment-specific inventory
+Project-02-Web-Server-Deployment/ansible/inventory
+
+# SSH private keys
+*.pem
+*.key
+
+# Ansible retry files
+*.retry

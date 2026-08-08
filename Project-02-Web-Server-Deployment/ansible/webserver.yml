@@ -1,0 +1,33 @@
+---
+
+- name: Configure Apache Web Server
+  hosts: web
+  become: yes
+  tasks:
+    - name: Install Apache
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Start Apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Create website index page
+      ansible.builtin.copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Web Server Deployment</title>
+          </head>
+          <body>
+              <h1>Web Server Deployment</h1>
+              <p>This website is hosted on Amazon EC2 using Apache.</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.html
+        mode: '0644'
+
