@@ -49,7 +49,7 @@ The infrastructure will evolve as Lunaria Systems grows.
 Current roadmap:
 
 * ✅ Project 1 – First Production Cloud Server
-* ⏳ Project 2 – Web Server Deployment
+* ✅ Project 2 – Web Server Deployment
 * ⏳ Project 3 – Database Infrastructure
 * ⏳ Project 4 – Docker Containerization
 * ⏳ Project 5 – CI/CD Pipeline
@@ -83,7 +83,7 @@ This repository is intended to reflect not only the final solution, but also the
 
 ✅ Project 1 – First Production Cloud Server — Completed
 
-🚧 Project 2 – Web Server Deployment — Coming Soon
+✅ Project 2 – Web Server Deployment — Completed
 
 ---
 
